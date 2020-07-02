@@ -126,7 +126,8 @@ public class RasterImage {
 				if (0 < pos_C && pos_C < argb.length) {
 					if (x - 1 < 0) // for left border
 						return 128;
-					return argb[pos_C] & 0xFF;
+					else
+						return argb[pos_C] & 0xFF;
 				}
 				break;
 		}
