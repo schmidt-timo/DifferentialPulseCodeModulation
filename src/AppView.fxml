@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * based on Exercise 1
+ * modified by Timo Schmidt for Exercise 6
+ *
+ * Copyright (C) 2019-2020 by Klaus Jung
+ * All rights reserved.
+ * Date: 2020-04-08
+-->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="800.0" maxWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AppController">
+
+   <center>
+
+      <GridPane hgap="5.0" vgap="5.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" />
+         </BorderPane.margin>
+         <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
+            <RowConstraints minHeight="60.0" valignment="TOP" vgrow="NEVER" />
+         </rowConstraints>
+
+         <children>
+
+            <TitledPane collapsible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Original Image">
+               <content>
+                  <ScrollPane pannable="true">
+                     <content>
+                        <ImageView fx:id="originalImageView" pickOnBounds="true" preserveRatio="true" smooth="false" />
+                     </content>
+                  </ScrollPane>
+               </content>
+            </TitledPane>
+
+            <VBox GridPane.rowIndex="1">
+               <HBox>
+                  <Label fx:id="originalEntropy" prefHeight="27.0" />
+               </HBox>
+                  <Button mnemonicParsing="false" onAction="#openImage" prefHeight="27.0" text="Open Image" />
+            </VBox>
+
+            <TitledPane collapsible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Prediction Error Image" GridPane.columnIndex="1">
+               <content>
+                  <ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" pannable="true">
+                     <content>
+                        <ImageView fx:id="predictionImageView" pickOnBounds="true" preserveRatio="true" smooth="false" />
+                     </content>
+                  </ScrollPane>
+               </content>
+            </TitledPane>
+
+            <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <HBox spacing="5.0">
+                  <children>
+                     <Label fx:id="predictionEntropy" prefHeight="27.0" text="Entropy = " />
+                  </children>
+               </HBox>
+
+               <HBox spacing="5.0">
+                  <children>
+                     <Label fx:id="predictorLabel" prefHeight="27.0" text="Predictor:" />
+                     <ComboBox fx:id="predictorSelection" onAction="#predictorChanged" />
+                  </children>
+               </HBox>
+
+<!--               <HBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <children>
+                     <Label fx:id="quantizationLabel" prefHeight="27.0" text="Quantization:" />
+                     <Slider fx:id="quantizationSlider" blockIncrement="1.0" max="100.0" min="1.0" prefHeight="27.0" value="1.0" />
+                     <Label fx:id="quantizationLevel" prefHeight="27.0" text="1.0" />
+                  </children>
+               </HBox>-->
+
+            </VBox>
+
+
+
+            <TitledPane collapsible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Reconstructed Image" GridPane.columnIndex="2">
+               <content>
+                  <ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" pannable="true">
+                     <content>
+                        <ImageView fx:id="reconstructedImageView" pickOnBounds="true" preserveRatio="true" smooth="false" />
+                     </content>
+                  </ScrollPane>
+               </content>
+            </TitledPane>
+
+            <HBox spacing="80" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <children>
+                  <Label fx:id="reconstructedEntropy" prefHeight="27.0" />
+                  <Label fx:id="MSE" text="MSE = " prefHeight="27.0"/>
+               </children>
+            </HBox>
+
+         </children>
+      </GridPane>
+   </center>
+
+   <bottom>
+      <Label fx:id="messageLabel" text="Message Label" BorderPane.alignment="CENTER" />
+   </bottom>
+
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+
+</BorderPane>
